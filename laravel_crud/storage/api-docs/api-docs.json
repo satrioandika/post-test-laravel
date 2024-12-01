@@ -1,0 +1,167 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "API Documentation",
+        "contact": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1",
+            "description": "API Documentation"
+        }
+    ],
+    "paths": {
+        "/tugas/{id}": {
+            "get": {
+                "tags": [
+                    "Tugas"
+                ],
+                "summary": "Tugas - Get By ID",
+                "description": "Mengambil Data Tugas Berdasarkan ID",
+                "operationId": "listTugasById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID Tugas",
+                        "required": true,
+                        "schema": {
+                            "description": "Masukan ID",
+                            "type": "string",
+                            "default": "1",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Berhasil mengambil Data Tugas",
+                                    "data": {
+                                        "id": 1,
+                                        "judul_tugas": "Nama Tugas",
+                                        "deskripsi": "Deskripsi Tugas",
+                                        "tanggal": "2024-07-02",
+                                        "status": "Selesai",
+                                        "user_id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/tugas/update": {
+            "put": {
+                "tags": [
+                    "Tugas"
+                ],
+                "summary": "Tugas - Update",
+                "description": "Update data Tugas",
+                "operationId": "updateTugas",
+                "requestBody": {
+                    "description": "Request Body Description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "id": 1,
+                                "judul_tugas": "Nama Tugas Baru",
+                                "deskripsi": "Deskripsi Tugas Baru",
+                                "tanggal": "2024-07-02",
+                                "status": "Belum Selesai",
+                                "user_id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Data berhasil diubah"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/tugas/delete": {
+            "delete": {
+                "tags": [
+                    "Tugas"
+                ],
+                "summary": "Tugas - Delete By ID",
+                "description": "Delete data Tugas",
+                "operationId": "deleteTugas",
+                "requestBody": {
+                    "description": "Request Body Description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Berhasil menghapus Data Tugas"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Enter Token",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
